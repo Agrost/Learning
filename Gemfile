@@ -32,6 +32,7 @@ gem 'slim-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 gem 'rubocop'
+gem 'devise'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -59,6 +60,7 @@ group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
+  gem 'launchy'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end
