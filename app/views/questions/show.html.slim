@@ -1,0 +1,8 @@
+h2 = @question.title
+p = @question.body
+button
+ = link_to 'Delete question', question_path(@question), method: :delete
+button
+ = link_to 'All questions', root_path(@question)
+button
+ = link_to 'Edit', edit_question_path(@question)
