@@ -2,7 +2,6 @@ div class='Aloq'
   h2 = "A list of questions"
   table
     head
-      tr
         th
           | Title
         th
@@ -19,3 +18,9 @@ div class='Aloq'
             = link_to 'Edit', edit_question_path(question)
           button
             = link_to 'Delete', question_path(question), method: :delete
+          button
+            = link_to 'Answer', question_path(question)
+button
+  = link_to 'New question', new_question_path
+button
+  = link_to 'Exit', destroy_user_session_path, method: :delete

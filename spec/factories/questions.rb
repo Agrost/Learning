@@ -1,9 +1,13 @@
-# frozen_string_literal: true
-
 FactoryBot.define do
-  factory :question do |n|
-    title 'MyString#{n}'
-    body 'MyText#{n}'
+ sequence :title do |n|
+    "title#{n}"
+  end
+  sequence :body do |n|
+     "body#{n}"
+   end
+  factory :question do
+    title
+    body
   end
 
   factory :invalid_question, class: "Question" do

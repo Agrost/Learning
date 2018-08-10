@@ -1,6 +1,7 @@
 = form_for @question do |f|
   = f.label :title
-  = f.text_field :title
+  = f.text_area :title
   = f.label :body
   = f.text_area :body
   = f.submit
+  = f.button link_to 'Exit', destroy_user_session_path, method: :delete
