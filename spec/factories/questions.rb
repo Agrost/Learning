@@ -8,10 +8,12 @@ FactoryBot.define do
   factory :question do
     title
     body
+    user
   end
 
   factory :invalid_question, class: "Question" do
     title nil
     body nil
+    user nil
   end
 end

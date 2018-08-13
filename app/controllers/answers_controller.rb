@@ -1,6 +1,8 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!
   before_action :load_answer, only: [:destroy, :update]
   before_action :load_question, only: [:new, :create]
+  before_action :load_owner, only: [:destroy]
 
   def show
   end
@@ -15,9 +17,14 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answer = @question.answers.new(answer_params)
-    @answer.save
+    answer = @question.answers.new(answer_params)
+    answer.user_id = current_user.id
+    if answer.save
+      redirect_to answer.question
+    else
+      render :new
     end
+  end
 
   def destroy
      question = @answer.question
@@ -35,6 +42,13 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     @question = @answer.question
   end
+
+  def load_owner
+      if @answer.user_id != current_user.id
+        redirect_to @answer.question
+        flash[:notice] = 'You cannot delete answer'
+      end
+    end
 
   def answer_params
     params.require(:answer).permit(:body)

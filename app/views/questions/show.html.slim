@@ -7,13 +7,11 @@ button
 button
  = link_to 'Edit', edit_question_path(@question)
 
-p = link_to 'Add answer', new_question_answer_path(@question.id)
 h2 All answers for this questions
 - @question.answers.each do |answer|
   p = answer.body
   button
-    = link_to "Delete", answer_path(answer.id) ,method: :delete
-
+    = link_to "Delete answer", answer_path(answer.id), method: :delete
 
 = form_for [ @question, Answer.new ] do |f|
   = f.label :body

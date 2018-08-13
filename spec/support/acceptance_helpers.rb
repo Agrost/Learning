@@ -4,5 +4,9 @@ module AccepranceHelper
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_on 'Log in'
-  end 
+  end
+  def sign_out(user)
+    visit root_path
+    click_link 'Exit'
+  end  
 end

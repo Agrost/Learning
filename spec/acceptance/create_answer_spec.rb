@@ -12,11 +12,10 @@ feature 'Create answer', %q{
     sign_in(user)
     question
     visit root_path
-    click_on "title1"
+    click_link "Show"
 
-    click_link 'Add answer'
-  save_and_open_page
     fill_in 'Body', with: 'text text'
-
+    click_on "Create answer"
+    expect(page).to have_content('text text')
   end
 end
