@@ -1,21 +1,16 @@
 require 'rails_helper'
-
-feature 'Create answer', %q{
-  To answer the question
-  As an authenticated user
-  I want to be able to answer questions
-  } do
-  given(:user) { create(:user) }
-  given(:question) { create(:question) }
-
-  scenario 'user views questions' do
+ feature 'User answer' do
+   given!(:user) { create(:user) }
+   given!(:question) { create(:question) }
+   given!(:answer) { create(:answer, question: question, user: user) }
+     scenario 'Authenticated user create answer', js: true do
     sign_in(user)
     question
-    visit root_path
-    click_link "Show"
-
-    fill_in 'Body', with: 'text text'
+    visit question_path(question)
+    fill_in 'Body', with: 'MyText'
     click_on "Create answer"
-    expect(page).to have_content('text text')
+    within '.answers' do
+      expect(page).to have_content 'MyText'
+    end
   end
 end

@@ -1,3 +1,4 @@
+
 require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
@@ -20,7 +21,7 @@ RSpec.describe AnswersController, type: :controller do
     before {sign_in(user)}
     context 'with valid attributes' do
       it 'save answer for question' do
-        expect { post :create, params: {question_id: question, answer: attributes_for(:answer) }}.to change(question.answers, :count).by(1)
+        expect { post :create, params: {question_id: question, answer: attributes_for(:answer), format: :js  }}.to change(question.answers, :count).by(1)
       end
     end
     context 'with invalid attributes' do

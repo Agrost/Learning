@@ -8,12 +8,10 @@ button
  = link_to 'Edit', edit_question_path(@question)
 
 h2 All answers for this questions
-- @question.answers.each do |answer|
-  p = answer.body
-  button
-    = link_to "Delete answer", answer_path(answer.id), method: :delete
+.answers
+  = render 'answers'
 
-= form_for [ @question, Answer.new ] do |f|
+= form_for [ @question, Answer.new ], remote: true do |f|
   = f.label :body
   = f.text_area :body
   = f.submit 'Create answer', method: :create

@@ -4,8 +4,6 @@ class AnswersController < ApplicationController
   before_action :load_question, only: [:new, :create]
   before_action :load_owner, only: [:destroy]
 
-  def show
-  end
 
   def new
     @answer = @question.answers.new
@@ -19,11 +17,7 @@ class AnswersController < ApplicationController
   def create
     answer = @question.answers.new(answer_params)
     answer.user_id = current_user.id
-    if answer.save
-      redirect_to answer.question
-    else
-      render :new
-    end
+    answer.save
   end
 
   def destroy

@@ -33,6 +33,8 @@ gem 'slim-rails'
 # gem 'mini_magick', '~> 4.8'
 gem 'rubocop'
 gem 'devise'
+gem 'jquery-rails'
+gem 'selenium-webdriver'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -44,6 +46,7 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails'
+  gem 'launchy'
 end
 
 group :development do
@@ -58,7 +61,6 @@ end
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15', '< 4.0'
-  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'launchy'
   # Easy installation and use of chromedriver to run system tests with Chrome
