@@ -4,7 +4,9 @@ class AnswersController < ApplicationController
   before_action :load_question, only: [:new, :create]
   before_action :load_owner, only: [:destroy]
 
-
+  def show
+  end
+    
   def new
     @answer = @question.answers.new
   end

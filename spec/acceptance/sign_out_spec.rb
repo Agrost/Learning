@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 feature 'User sign out' do
   given(:user) { create(:user) }
 

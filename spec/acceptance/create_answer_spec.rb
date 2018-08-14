@@ -1,9 +1,8 @@
-require 'rails_helper'
- feature 'User answer' do
-   given!(:user) { create(:user) }
-   given!(:question) { create(:question) }
-   given!(:answer) { create(:answer, question: question, user: user) }
-     scenario 'Authenticated user create answer', js: true do
+feature 'User answer' do
+  given!(:user) { create(:user) }
+  given!(:question) { create(:question) }
+  given!(:answer) { create(:answer, question: question, user: user) }
+  scenario 'Authenticated user create answer', js: true do
     sign_in(user)
     question
     visit question_path(question)

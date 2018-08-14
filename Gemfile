@@ -63,6 +63,7 @@ group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'shoulda-matchers'
   gem 'launchy'
+  gem 'database_cleaner'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end

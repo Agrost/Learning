@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 feature 'Create question', %q{
 In order to get questions from community
 And watch them
