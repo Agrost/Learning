@@ -4,7 +4,7 @@
     button
       = link_to 'Delete answer', answer_path(answer), method: :delete, remote: true
     button
-      = link_to 'Edit', '', class: 'edit-answer-link', data: { answer_id: answer.id }
+      = link_to 'Edit answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
     = form_for answer, remote: true, html: {id: "edit-answer-#{answer.id}"} do |f|
       = f.text_area :body
       = f.submit 'Save'

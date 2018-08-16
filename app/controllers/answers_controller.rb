@@ -2,7 +2,6 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :load_answer, only: [:destroy, :show, :update]
   before_action :load_question, only: [:new, :create]
-  before_action :load_owner, only: [:destroy]
 
   def show
   end
@@ -24,7 +23,7 @@ class AnswersController < ApplicationController
 
   def destroy
     @question = @answer.question
-    @answer.destroy if @answer.user == current_user
+    @answer.destroy
    end
 
   private
@@ -37,13 +36,6 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     @question = @answer.question
   end
-
-  def load_owner
-      if @answer.user_id != current_user.id
-        redirect_to @answer.question
-        flash[:notice] = 'You cannot delete answer'
-      end
-    end
 
   def answer_params
     params.require(:answer).permit(:body)

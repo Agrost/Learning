@@ -4,6 +4,7 @@
   <% end %>
 <% else %>
   <% if @answer.destroyed? %>
+    $('.answers').html('<%= j render 'questions/answers' %>');
     $('<%= "#answer-#{ @answer.id }" %>').remove();
   <% end %>
 <% end %>
