@@ -1,3 +1,5 @@
+require_relative 'acceptance_helper'
+
 feature 'Delete Answer' do
   given(:user) { create(:user) }
   given(:user2) { create(:user) }
@@ -9,7 +11,7 @@ feature 'Delete Answer' do
     answer
     visit root_path
     click_link 'Show'
-    click_on 'Delete answer'
+    click_button 'Delete answer'
   end
   scenario 'Logged user tries to delete not his answer' do
     sign_in(user)
@@ -19,7 +21,7 @@ feature 'Delete Answer' do
     sign_in(user2)
     visit root_path
     click_link 'Show'
-    click_on 'Delete answer'
+    click_button 'Delete answer'
     expect(page).to have_content answer.body
   end
   scenario 'Not logged user tries to delete answer' do

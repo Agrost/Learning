@@ -1,31 +1,30 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_answer, only: [:destroy, :update]
+  before_action :load_answer, only: [:destroy, :show, :update]
   before_action :load_question, only: [:new, :create]
   before_action :load_owner, only: [:destroy]
 
   def show
   end
-    
+
   def new
     @answer = @question.answers.new
   end
 
   def update
     @answer.update(answer_params)
-    respond_with @answer
+    @question = @answer.question
   end
 
   def create
-    answer = @question.answers.new(answer_params)
-    answer.user_id = current_user.id
-    answer.save
+    @answer = @question.answers.new(answer_params)
+    @answer.user_id = current_user.id
+    @answer.save
   end
 
   def destroy
-     question = @answer.question
-     @answer.destroy
-     redirect_to question
+    @question = @answer.question
+    @answer.destroy if @answer.user == current_user
    end
 
   private

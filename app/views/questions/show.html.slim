@@ -1,17 +1,19 @@
 h2 = @question.title
 p = @question.body
 button
- = link_to 'Delete question', question_path(@question), method: :delete
-button
- = link_to 'All questions', root_path(@question)
-button
- = link_to 'Edit', edit_question_path(@question)
+  = link_to 'All questions', root_path(@question)
+-if @question.user_id == current_user.id
+  button
+    = link_to 'Delete question', question_path(@question), method: :delete
+  button
+    = link_to 'Edit', edit_question_path(@question)
 
 h2 All answers for this questions
 .answers
   = render 'answers'
 
 = form_for [ @question, Answer.new ], remote: true do |f|
-  = f.label :body
+  h2 = 'your answer'
+  .answer-errors
   = f.text_area :body
   = f.submit 'Create answer', method: :create
