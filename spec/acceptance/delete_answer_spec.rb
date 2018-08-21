@@ -21,8 +21,7 @@ feature 'Delete Answer' do
     sign_in(user2)
     visit root_path
     click_link 'Show'
-    click_button 'Delete answer'
-    expect(page).to have_content answer.body
+    expect(page).to_not have_link 'Delete answer'
   end
   scenario 'Not logged user tries to delete answer' do
     visit answer_path(answer)

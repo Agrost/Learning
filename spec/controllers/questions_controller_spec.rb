@@ -1,6 +1,7 @@
 RSpec.describe QuestionsController, type: :controller do
   let(:user) { create(:user) }
   let(:question) { create(:question, user: user) }
+  let(:answer) { create(:answer, question: question, user: user) }
 
   describe 'GET #index' do
     let(:questions) { FactoryBot.create(:question) }
@@ -35,10 +36,6 @@ RSpec.describe QuestionsController, type: :controller do
 
     it 'assigns a new Question to @question' do
       expect(assigns(:question)).to be_a_new(Question)
-    end
-
-    it 'assigns new answer for question' do
-      expect(assigns(:answer)).to be_a_new(Answer)
     end
 
     it 'renders new view' do

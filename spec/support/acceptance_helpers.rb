@@ -8,5 +8,5 @@ module AccepranceHelper
   def sign_out(user)
     visit root_path
     click_link 'Exit'
-  end  
+  end
 end
