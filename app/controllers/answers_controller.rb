@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_answer, only: [:destroy, :show, :update, :set_best]
-  before_action :load_question, only: [:new, :create]
+  before_action :load_answer, only: %i[destroy show update set_best]
+  before_action :load_question, only: %i[new create]
 
-  def show
-  end
+  def show; end
 
   def new
     @answer = @question.answers.new

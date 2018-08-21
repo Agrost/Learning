@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe QuestionsController, type: :controller do
   let(:user) { create(:user) }
   let(:question) { create(:question, user: user) }
@@ -50,30 +52,29 @@ RSpec.describe QuestionsController, type: :controller do
     it 'assings the requested question to @question' do
       expect(assigns(:question)).to eq question
     end
-
   end
   describe 'POST #create' do
     sign_in_user
     context 'with valid attributes' do
       it 'saves the new question in the database' do
-        expect { post :create, params: {question: attributes_for(:question) }}.to change(Question, :count).by(1)
+        expect { post :create, params: { question: attributes_for(:question) } }.to change(Question, :count).by(1)
       end
       it 'save user_id for question' do
-        post :create, params: {question: attributes_for(:question)}
+        post :create, params: { question: attributes_for(:question) }
         expect(question.user_id).to eq(user.id)
       end
       it 'redirects to show view' do
-        post :create, params: {question: attributes_for(:question)}
+        post :create, params: { question: attributes_for(:question) }
         expect(response).to redirect_to question_path(assigns(:question))
       end
     end
-      context 'with invalid attributes' do
+    context 'with invalid attributes' do
       it 'does not save the question' do
-        expect {post :create, params: {question: attributes_for(:invalid_question) }}.to_not change(Question, :count)
+        expect { post :create, params: { question: attributes_for(:invalid_question) } }.to_not change(Question, :count)
       end
 
       it 're-renders new view' do
-        post :create, params: {question: attributes_for(:invalid_question)}
+        post :create, params: { question: attributes_for(:invalid_question) }
         expect(response).to render_template :new
       end
     end
@@ -83,19 +84,19 @@ RSpec.describe QuestionsController, type: :controller do
     sign_in_user
     context 'valid atributes' do
       it 'assings the requested question to @question' do
-        patch :update, params: { id: question, question: attributes_for(:question)}
+        patch :update, params: { id: question, question: attributes_for(:question) }
         expect(assigns(:question)).to eq question
       end
 
       it 'changes question attributes' do
-        patch :update, params: {id: question, question: { title: 'new title', body: 'new body' }}
+        patch :update, params: { id: question, question: { title: 'new title', body: 'new body' } }
         question.reload
         expect(question.title).to eq 'new title'
         expect(question.body).to eq 'new body'
       end
 
       it 'redirects to the updated question' do
-        patch :update, params: {id: question, question: attributes_for(:question)}
+        patch :update, params: { id: question, question: attributes_for(:question) }
         expect(response).to redirect_to question
       end
     end
@@ -106,7 +107,7 @@ RSpec.describe QuestionsController, type: :controller do
     before { question }
 
     it 'redirects to index viev' do
-      delete :destroy, params: {id: question}
+      delete :destroy, params: { id: question }
       expect(response).to redirect_to root_path
     end
   end

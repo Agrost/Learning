@@ -21,7 +21,8 @@
 # Ignore Byebug command history file.
 .byebug_history
 coverage
-
+.rubocop_todo.yml
+.rubocop.yml
 # Ignore uploaded files in development
 /storage/*
 

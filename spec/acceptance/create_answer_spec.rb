@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'acceptance_helper'
 
 feature 'User answer' do
@@ -7,7 +9,7 @@ feature 'User answer' do
     sign_in(user)
     visit question_path(question)
     fill_in 'answer_body', with: 'MyText'
-    click_on "Create answer"
+    click_on 'Create answer'
     within '.answers' do
       expect(page).to have_content 'MyText'
     end

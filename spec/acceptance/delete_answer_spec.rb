@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'acceptance_helper'
 
 feature 'Delete Answer' do
@@ -25,6 +27,6 @@ feature 'Delete Answer' do
   end
   scenario 'Not logged user tries to delete answer' do
     visit answer_path(answer)
-     expect(page).to_not have_link 'Delete'
+    expect(page).to_not have_link 'Delete'
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AccepranceHelper
   def sign_in(user)
     visit new_user_session_path
@@ -5,7 +7,8 @@ module AccepranceHelper
     fill_in 'Password', with: user.password
     click_on 'Log in'
   end
-  def sign_out(user)
+
+  def sign_out(_user)
     visit root_path
     click_link 'Exit'
   end

@@ -31,9 +31,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'slim-rails'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-gem 'rubocop'
 gem 'devise'
 gem 'jquery-rails'
+gem 'rubocop'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -43,12 +43,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'factory_bot_rails'
   gem 'capybara', '>= 2.15', '< 4.0'
-  gem 'rspec-rails'
-  gem 'database_cleaner'
-  gem 'launchy'
   gem 'capybara-webkit'
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'launchy'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -62,8 +62,8 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-  gem 'shoulda-matchers'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end

@@ -1,4 +1,6 @@
-class  CreateUserWithQuestionAndAnswers < ActiveRecord::Migration[5.2]
+# frozen_string_literal: true
+
+class CreateUserWithQuestionAndAnswers < ActiveRecord::Migration[5.2]
   def change
     add_reference :questions, :user, index: true, foreign_key: true
     add_reference :answers, :user, index: true, foreign_key: true
