@@ -27,6 +27,7 @@ coverage
 /storage/*
 
 /node_modules
+.rake_tasks~
 /yarn-error.log
 
 /public/assets
