@@ -4,13 +4,14 @@
   = @answer.body
 - @question.answers.each do |answer|
   p = answer.body
-  - if user_signed_in? && answer.user_id == current_user.id
-    button
-      = link_to 'Best', set_best_answer_path(answer), method: :patch, remote: true
-    button
-      = link_to 'Delete answer', answer_path(answer), method: :delete, remote: true
-    button
-      = link_to 'Edit answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
-    = form_for answer, remote: true, html: {id: "edit-answer-#{answer.id}"} do |f|
-      = f.text_area :body
-      = f.submit 'Save'
+  -if @question.user_id == current_user.id
+    - if user_signed_in? && answer.user_id
+      button
+        = link_to 'Best', set_best_answer_path(answer), method: :patch, remote: true
+      button
+        = link_to 'Delete answer', answer_path(answer), method: :delete, remote: true
+      button
+        = link_to 'Edit answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
+      = form_for answer, remote: true, html: {id: "edit-answer-#{answer.id}"} do |f|
+        = f.text_area :body
+        = f.submit 'Save'
