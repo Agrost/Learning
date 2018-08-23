@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 require_relative 'acceptance_helper'
 
-feature 'Add files to question', %q{
+describe 'Add files to question', "
   In order to illustrate my question
   As an question's autor
   I'd like to be able to attach files
-} do
+" do
 
-  given(:user) {create(:user)}
+  let(:user) { create(:user) }
 
-  background do
+  before do
     sign_in(user)
     visit new_question_path
   end
 
-  scenario 'User adds file when asks question' do
+  it 'User adds file when asks question' do
     fill_in 'Title', with: 'Test question'
     fill_in 'Text', with: 'text text text'
     attach_file 'File', '#{Rails.root}/spec/spec_helper.rb'

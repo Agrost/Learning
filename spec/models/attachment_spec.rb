@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Attachment do
-  it { should belong_to :question }
+  it { is_expected.to belong_to :question }
 end

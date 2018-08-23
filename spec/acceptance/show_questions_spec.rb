@@ -2,14 +2,15 @@
 
 require_relative 'acceptance_helper'
 
-feature 'Create question', '
+describe 'Create question', '
 In order to get questions from community
 And watch them
 I want to be able to ask questions
 ' do
-  given(:user) { create :user }
-  given(:question) { create(:question) }
-  scenario 'user views questions' do
+  let(:user) { create :user }
+  let(:question) { create(:question) }
+
+  it 'user views questions' do
     sign_in(user)
     question
     question2 = create(:question)

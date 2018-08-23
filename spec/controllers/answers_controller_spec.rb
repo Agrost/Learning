@@ -5,11 +5,13 @@ RSpec.describe AnswersController, type: :controller do
   let(:user2) { create(:user) }
   let(:question) { create(:question, user: user) }
   let(:answer) { create(:answer, question: question, user: user) }
+
   describe 'GET #new' do
     before do
       sign_in(user)
       get :new, params: { question_id: question }
     end
+
     it 'assigns a new answer for question' do
       expect(assigns(:answer)).to be_a_new(Answer)
     end
@@ -17,23 +19,28 @@ RSpec.describe AnswersController, type: :controller do
       expect(response).to render_template :new
     end
   end
+
   describe 'POST #create' do
     before { sign_in(user) }
+
     context 'with valid attributes' do
       it 'save answer for question' do
         expect { post :create, params: { question_id: question, answer: attributes_for(:answer) }, format: :js }.to change(question.answers, :count).by(1)
       end
     end
+
     context 'with invalid attributes' do
       it 'not save answer for question' do
-        expect { post :create, params: { question_id: question, answer: attributes_for(:invalid_answer) } }.to_not change(Answer, :count)
+        expect { post :create, params: { question_id: question, answer: attributes_for(:invalid_answer) } }.not_to change(Answer, :count)
       end
     end
   end
+
   describe 'PATCH #update' do
     before do
       sign_in(user)
     end
+
     it 'assings the requested answer to @answer' do
       patch :update, params: { id: answer, question_id: question, answer: attributes_for(:answer), format: :js }
       expect(assigns(:answer)).to eq answer
@@ -52,11 +59,13 @@ RSpec.describe AnswersController, type: :controller do
       expect(response).to render_template :update
     end
   end
+
   describe 'PATCH #set_best' do
     context 'Author of question' do
       before do
         sign_in(user)
       end
+
       it 'changes answer best attributes' do
         patch :set_best, params: { id: answer, format: :js }
         answer.reload
@@ -67,6 +76,7 @@ RSpec.describe AnswersController, type: :controller do
         expect(response).to render_template :set_best
       end
     end
+
     context 'Not author of question' do
       it 'tries to change best answer' do
         sign_in(user2)

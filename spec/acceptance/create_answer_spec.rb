@@ -2,10 +2,11 @@
 
 require_relative 'acceptance_helper'
 
-feature 'User answer' do
-  given!(:user) { create(:user) }
-  given!(:question) { create(:question) }
-  scenario 'Authenticated user create answer', js: true do
+describe 'User answer' do
+  let!(:user) { create(:user) }
+  let!(:question) { create(:question) }
+
+  it 'Authenticated user create answer', js: true do
     sign_in(user)
     visit question_path(question)
     fill_in 'answer_body', with: 'MyText'
@@ -14,7 +15,7 @@ feature 'User answer' do
       expect(page).to have_content 'MyText'
     end
   end
-  scenario 'Authenticated user create invalid answer', js: true do
+  it 'Authenticated user create invalid answer', js: true do
     sign_in(user)
     visit question_path(question)
     click_on 'Create answer'

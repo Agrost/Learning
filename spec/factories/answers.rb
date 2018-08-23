@@ -8,12 +8,12 @@ FactoryBot.define do
     body
     question
     user
-    best 'false'
+    best { 'false' }
   end
   factory :invalid_answer, class: 'Answer' do
-    body nil
-    question nil
-    user nil
-    best nil
+    body { nil }
+    question { nil }
+    user { nil }
+    best { nil }
   end
 end

@@ -14,8 +14,8 @@ FactoryBot.define do
   end
 
   factory :invalid_question, class: 'Question' do
-    title nil
-    body nil
-    user nil
+    title { nil }
+    body { nil }
+    user { nil }
   end
 end

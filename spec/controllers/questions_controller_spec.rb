@@ -7,6 +7,7 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe 'GET #index' do
     let(:questions) { FactoryBot.create(:question) }
+
     before { get :index }
 
     it 'populates an array of all questions' do
@@ -53,6 +54,7 @@ RSpec.describe QuestionsController, type: :controller do
       expect(assigns(:question)).to eq question
     end
   end
+
   describe 'POST #create' do
     sign_in_user
     context 'with valid attributes' do
@@ -68,9 +70,10 @@ RSpec.describe QuestionsController, type: :controller do
         expect(response).to redirect_to question_path(assigns(:question))
       end
     end
+
     context 'with invalid attributes' do
       it 'does not save the question' do
-        expect { post :create, params: { question: attributes_for(:invalid_question) } }.to_not change(Question, :count)
+        expect { post :create, params: { question: attributes_for(:invalid_question) } }.not_to change(Question, :count)
       end
 
       it 're-renders new view' do
