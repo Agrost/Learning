@@ -10,12 +10,9 @@ describe 'Add files to question', "
 
   let(:user) { create(:user) }
 
-  before do
+  it 'User adds file when asks question' do
     sign_in(user)
     visit new_question_path
-  end
-
-  it 'User adds file when asks question' do
     fill_in 'Title', with: 'Test question'
     fill_in 'Text', with: 'text text text'
     attach_file 'File', '#{Rails.root}/spec/spec_helper.rb'
