@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class FileUploader < CarrierWave::Uploader::Base
-  delegate :identifier, to: :file
+  delegate :filename, to: :file
 
   storage :file
 
