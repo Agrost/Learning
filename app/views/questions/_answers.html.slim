@@ -1,18 +1,25 @@
 - @question.answers.each do |answer|
--if @answer.best
-  = 'Best answer: '
-  = @answer.body
-- @question.answers.each do |answer|
-  p = answer.body
-  -if @question.user_id == current_user.id
-    - if user_signed_in? && answer.user_id
-      button
-        = link_to 'Best', set_best_answer_path(answer), method: :patch, remote: true
+  -if answer.best
+    = 'Best answer: '
+  -if answer.persisted?
+    p = answer.body
+    ul
+      -answer.attachments.each do |a|
+        li = link_to a.file.identifier, a.file.url
+    -if @question.user_id == current_user.id
+      - if user_signed_in? && answer.user_id
+        button
+          = link_to 'Best', set_best_answer_path(answer), method: :patch, remote: true
   - if user_signed_in? && answer.user_id == current_user.id
     button
       = link_to 'Delete answer', answer_path(answer), method: :delete, remote: true
     button
       = link_to 'Edit answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
     = form_for answer, remote: true, html: {id: "edit-answer-#{answer.id}"} do |f|
-      = f.text_area :body
-      = f.submit 'Save'
+      p
+        = f.text_area :body
+        = f.submit 'Save'
+      p
+        = f.fields_for :attachments do |a|
+          = a.label :file
+          = a.file_field :file

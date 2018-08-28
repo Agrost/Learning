@@ -2,16 +2,16 @@
 
 require_relative 'acceptance_helper'
 
-feature 'Create question', '
+describe 'Create question', '
   In order to get answer from community
   As an authentificated user
   I want to be able to ask questions
   ' do
 
-  given(:user) { create(:user) }
-  given(:question) { create(:question) }
+  let(:user) { create(:user) }
+  let(:question) { create(:question) }
 
-  scenario 'Authenticated user creates question' do
+  it 'Authenticated user creates question' do
     sign_in(user)
     question
     visit root_path
@@ -19,7 +19,7 @@ feature 'Create question', '
     expect(page).to have_content question.body
   end
 
-  scenario 'Non-authenticated user ties to creates qustion' do
+  it 'Non-authenticated user ties to creates qustion' do
     visit new_question_path
     expect(page).to have_content('You need to sign in or sign up before continuing.')
   end

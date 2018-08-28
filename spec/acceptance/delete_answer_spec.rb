@@ -2,12 +2,13 @@
 
 require_relative 'acceptance_helper'
 
-feature 'Delete Answer' do
-  given(:user) { create(:user) }
-  given(:user2) { create(:user) }
-  given(:question) { create(:question, user: user) }
-  given(:answer) { create(:answer, question: question, user: user) }
-  scenario 'Logged user delete his answer' do
+describe 'Delete Answer' do
+  let(:user) { create(:user) }
+  let(:user2) { create(:user) }
+  let(:question) { create(:question, user: user) }
+  let(:answer) { create(:answer, question: question, user: user) }
+
+  it 'Logged user delete his answer' do
     sign_in(user)
     question
     answer
@@ -15,7 +16,7 @@ feature 'Delete Answer' do
     click_link 'Show'
     click_button 'Delete answer'
   end
-  scenario 'Logged user tries to delete not his answer' do
+  it 'Logged user tries to delete not his answer' do
     sign_in(user)
     question
     answer
@@ -23,10 +24,10 @@ feature 'Delete Answer' do
     sign_in(user2)
     visit root_path
     click_link 'Show'
-    expect(page).to_not have_link 'Delete answer'
+    expect(page).not_to have_link 'Delete answer'
   end
-  scenario 'Not logged user tries to delete answer' do
+  it 'Not logged user tries to delete answer' do
     visit answer_path(answer)
-    expect(page).to_not have_link 'Delete'
+    expect(page).not_to have_link 'Delete'
   end
 end
