@@ -7,13 +7,13 @@ feature 'Add files to question', "
  I'd like to be able to attach files
 " do
   given(:user) { create(:user) }
+  given!(:question) { create(:question, user: user) }
   background do
     sign_in(user)
-    visit new_question_path
+    visit question_path(question)
   end
-  scenario 'User adds file when asks question' do
-    fill_in 'Title', with: 'Test question'
-    fill_in 'Body', with: 'text text text'
+  scenario 'User adds file when asks answer', js: true do
+    fill_in 'answer_body', with: 'text text text'
     attach_file 'File', '12345'
     click_on 'Create'
     expect(page).to have_content '12345'
