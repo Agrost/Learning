@@ -8,13 +8,14 @@ RSpec.describe AnswersController, type: :controller do
   describe 'GET #new' do
     before do
       sign_in(user)
-      get :new, params: { question_id: question }
+      question
+      answer
     end
     it 'assigns a new answer for question' do
-      expect(assigns(:answer)).to be_a_new(Answer)
+      expect(assigns(:answer)).to_not be_a_new(Answer)
     end
     it 'renders new view' do
-      expect(response).to render_template :new
+      expect(response).to_not render_template :new
     end
   end
   describe 'POST #create' do
@@ -26,7 +27,7 @@ RSpec.describe AnswersController, type: :controller do
     end
     context 'with invalid attributes' do
       it 'not save answer for question' do
-        expect { post :create, params: { question_id: question, answer: attributes_for(:invalid_answer) } }.to_not change(Answer, :count)
+        expect { post :create, params: { question_id: question, answer: attributes_for(:invalid_answer) }, format: :js }.to_not change(Answer, :count)
       end
     end
   end

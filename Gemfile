@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+  # frozen_string_literal: true
 
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
@@ -34,6 +34,9 @@ gem 'slim-rails'
 gem 'devise'
 gem 'jquery-rails'
 gem 'rubocop'
+gem 'rubocop-rspec'
+gem 'carrierwave'
+gem 'remotipart'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -49,6 +52,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'rspec-rails'
+  gem 'cocoon'
 end
 
 group :development do
